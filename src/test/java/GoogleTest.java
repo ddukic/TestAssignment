@@ -1,4 +1,6 @@
 import com.fourcreate.base.TestBase;
+import com.fourcreate.constants.Constants;
+import com.fourcreate.pages.GmailPage;
 import com.fourcreate.pages.GooglePage;
 import com.fourcreate.pages.GoogleResultsPage;
 import org.junit.jupiter.api.Assertions;
@@ -25,5 +27,14 @@ public class GoogleTest extends TestBase {
         googlePage = new GooglePage(driver, "sr");
         googleResultsPage = googlePage.searchFor(searchString);
         Assertions.assertTrue(googleResultsPage.isCorrectResultFirst(searchString));
+    }
+
+    @Test
+    public void testUnreadEmails() {
+        googlePage.signInToGmail(Constants.EMAIL, Constants.PASSWORD);
+        GmailPage gmailPage = googlePage.openGmail();
+        Assertions.assertTrue(gmailPage.isThereUnreadEmails());
+
+        gmailPage.signOut();
     }
 }

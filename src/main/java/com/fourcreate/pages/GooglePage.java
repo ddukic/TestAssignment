@@ -10,10 +10,20 @@ import org.openqa.selenium.support.PageFactory;
 public class GooglePage {
 
     private final WebDriver driver;
+
     @FindBy(name = "q")
     private WebElement searchField;
+
     @FindBy(name = "btnK")
     private WebElement searchButton;
+
+    @FindBy(css = "a[href*='ServiceLogin']")
+    private WebElement signInButton;
+
+
+    public GooglePage(WebDriver driver) {
+        this(driver, "en");
+    }
 
     public GooglePage(final WebDriver driver, final String language) {
         this.driver = driver;
@@ -39,4 +49,13 @@ public class GooglePage {
         return new GoogleResultsPage(driver);
     }
 
+    public void signInToGmail(final String email, final String password) {
+        StackOverflowPage stackOverflowPage = new StackOverflowPage(driver);
+        stackOverflowPage.loginToStackOverflowUsingGoogleAuth(email, password);
+    }
+
+    public GmailPage openGmail() {
+        driver.get("https://mail.google.com/");
+        return new GmailPage(driver);
+    }
 }

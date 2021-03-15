@@ -11,8 +11,10 @@ import java.util.List;
 public class GoogleResultsPage {
 
     private final WebDriver driver;
+
     @FindBy(css = "[id='rso'] a cite")
     private List<WebElement> searchResultLinks;
+
     @FindBy(css = "[id='rso'] a h3")
     private List<WebElement> searchResultTitles;
 
