@@ -18,9 +18,6 @@ public class GooglePage extends LoadableComponent<GooglePage> {
     @FindBy(name = "q")
     private WebElement searchField;
 
-    @FindBy(name = "btnK")
-    private WebElement searchButton;
-
     @FindBy(css = "a[href*='ServiceLogin']")
     private WebElement signInButton;
 
@@ -89,6 +86,5 @@ public class GooglePage extends LoadableComponent<GooglePage> {
     @Override
     protected void isLoaded() throws Error {
         pageUtils.waitForElementToAppear(searchField);
-        pageUtils.waitForElementToAppear(searchButton);
     }
 }
