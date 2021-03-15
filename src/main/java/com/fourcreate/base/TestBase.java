@@ -3,12 +3,14 @@ package com.fourcreate.base;
 import com.fourcreate.enums.BrowsersEnum;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ExtendWith(CloseDriverExtension.class)
 public class TestBase {
 
     protected static final Logger logger = LoggerFactory.getLogger(TestBase.class);
