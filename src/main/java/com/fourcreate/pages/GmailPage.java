@@ -1,6 +1,5 @@
 package com.fourcreate.pages;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,9 +11,6 @@ public class GmailPage {
 
     @FindBy(css = "tr[class='zA zE']")
     private List<WebElement> unreadEmails;
-
-    @FindBy(css = ".bsU")
-    private WebElement numberOfUnreadEmailsValue;
 
     @FindBy(css = "a[href*='SignOut']")
     private WebElement userIcon;
@@ -29,15 +25,17 @@ public class GmailPage {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * @return <code>true</code> if there are unread emails; <code>false</code> otherwise
+     */
     public boolean isThereUnreadEmails() {
-        int numberOfUnreadEmails = Integer.parseInt(numberOfUnreadEmailsValue.getText());
-
-        Assertions.assertEquals(numberOfUnreadEmails, unreadEmails.size(),
-            "Number of unread emails is not correct.");
-
         return unreadEmails.size() > 0;
     }
 
+    /**
+     * Signs out from the Google
+     * @return new {@link GooglePage}
+     */
     public GooglePage signOut() {
         userIcon.click();
         logoutButton.click();

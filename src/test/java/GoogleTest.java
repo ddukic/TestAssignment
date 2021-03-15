@@ -35,6 +35,6 @@ public class GoogleTest extends TestBase {
         GmailPage gmailPage = googlePage.openGmail();
         Assertions.assertTrue(gmailPage.isThereUnreadEmails());
 
-        gmailPage.signOut();
+        googlePage = gmailPage.signOut();
     }
 }

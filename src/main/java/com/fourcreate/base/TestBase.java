@@ -31,6 +31,7 @@ public class TestBase {
         logger.info("OS is: " + OS);
     }
 
+    // Web driver initialization, supports only 2 browsers at the moment
     @BeforeEach
     public void beforeTestBase() {
         switch (BROWSER) {
@@ -47,6 +48,13 @@ public class TestBase {
         logger.info("Window size after maximization: {}", driver.manage().window().getSize());
     }
 
+    /**
+     * Loads browser using system properties.
+     *
+     * @param browserProperty a browser name
+     * @return the {@link BrowsersEnum} if it is supported
+     * @throws IllegalArgumentException in case browserProperty is empty or null
+     */
     private static BrowsersEnum getBrowserTypeProperty(String browserProperty)
         throws IllegalArgumentException {
         if (browserProperty == null || browserProperty.isEmpty()) {

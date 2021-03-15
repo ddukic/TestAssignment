@@ -24,6 +24,11 @@ public class GoogleResultsPage {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Checks does first google search result contain search string in link and in title
+     * @param searchResult expected string
+     * @return <code>true</code> if first result contains search string; <code>false</code> otherwise
+     */
     public boolean isCorrectResultFirst(String searchResult) {
         return StringUtils.containsIgnoreCase(searchResultLinks.get(0).getText(), searchResult)
             && StringUtils.containsIgnoreCase(searchResultTitles.get(0).getText(), searchResult);
