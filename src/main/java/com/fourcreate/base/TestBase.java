@@ -4,6 +4,7 @@ import com.fourcreate.enums.BrowsersEnum;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -31,13 +32,9 @@ public class TestBase {
 
     @BeforeEach
     public void beforeTestBase() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("enable-automation");
-        options.addArguments("--no-sandbox");
 
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver(options);
-
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
