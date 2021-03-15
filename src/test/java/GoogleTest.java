@@ -12,7 +12,7 @@ public class GoogleTest extends TestBase {
 
     @BeforeEach
     public void before() {
-        googlePage = new GooglePage(driver);
+        googlePage = new GooglePage(driver, "en");
     }
 
     @Test
@@ -20,7 +20,10 @@ public class GoogleTest extends TestBase {
         final String searchString = "4create";
 
         googleResultsPage = googlePage.searchFor(searchString);
+        Assertions.assertTrue(googleResultsPage.isCorrectResultFirst(searchString));
 
+        googlePage = new GooglePage(driver, "sr");
+        googleResultsPage = googlePage.searchFor(searchString);
         Assertions.assertTrue(googleResultsPage.isCorrectResultFirst(searchString));
     }
 }
