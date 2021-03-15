@@ -11,9 +11,6 @@ import org.slf4j.LoggerFactory;
 public class GoogleSignInPage {
     protected static final Logger logger = LoggerFactory.getLogger(GoogleSignInPage.class);
 
-    private final WebDriver driver;
-    private final PageUtils pageUtils;
-
     @FindBy(css = "input[type='email']")
     private WebElement emailInput;
     @FindBy(css = "input[type='password']")
@@ -22,6 +19,9 @@ public class GoogleSignInPage {
     private WebElement nextButton;
     @FindBy(id = "passwordNext")
     private WebElement passwordNext;
+
+    private final WebDriver driver;
+    private final PageUtils pageUtils;
 
     public GoogleSignInPage(WebDriver driver) {
         this.driver = driver;

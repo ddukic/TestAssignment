@@ -1,19 +1,19 @@
 package com.fourcreate.pages;
 
 import com.fourcreate.constants.Constants;
+import com.fourcreate.utils.PageUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GooglePage {
+public class GooglePage extends LoadableComponent<GooglePage> {
 
     protected static final Logger logger = LoggerFactory.getLogger(GooglePage.class);
-
-    private final WebDriver driver;
 
     @FindBy(name = "q")
     private WebElement searchField;
@@ -24,6 +24,9 @@ public class GooglePage {
     @FindBy(css = "a[href*='ServiceLogin']")
     private WebElement signInButton;
 
+    private final WebDriver driver;
+    private final PageUtils pageUtils;
+
 
     public GooglePage(WebDriver driver) {
         this(driver, "en");
@@ -31,6 +34,7 @@ public class GooglePage {
 
     public GooglePage(final WebDriver driver, final String language) {
         this.driver = driver;
+        this.pageUtils = new PageUtils(driver);
         switch (language) {
             case "en":
                 this.driver.get(Constants.GOOGLE_ENGLISH);
@@ -43,6 +47,7 @@ public class GooglePage {
         }
 
         PageFactory.initElements(driver, this);
+        this.get();
     }
 
     /**
@@ -74,5 +79,16 @@ public class GooglePage {
         logger.info("Opening gmail.");
         driver.get("https://mail.google.com/");
         return new GmailPage(driver);
+    }
+
+    @Override
+    protected void load() {
+
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        pageUtils.waitForElementToAppear(searchField);
+        pageUtils.waitForElementToAppear(searchButton);
     }
 }
