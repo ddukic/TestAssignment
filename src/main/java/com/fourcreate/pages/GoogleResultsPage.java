@@ -18,6 +18,9 @@ public class GoogleResultsPage extends LoadableComponent<GoogleResultsPage> {
     @FindBy(css = "[id='rso'] a h3")
     private List<WebElement> searchResultTitles;
 
+    @FindBy(id = "result-stats")
+    private WebElement resultStats;
+
     private final WebDriver driver;
     private final PageUtils pageUtils;
 
@@ -46,7 +49,6 @@ public class GoogleResultsPage extends LoadableComponent<GoogleResultsPage> {
 
     @Override
     protected void isLoaded() throws Error {
-        pageUtils.waitForElementToAppear(searchResultLinks.get(0));
-        pageUtils.waitForElementToAppear(searchResultTitles.get(0));
+        pageUtils.waitForElementToAppear(resultStats);
     }
 }

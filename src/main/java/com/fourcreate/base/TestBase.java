@@ -65,7 +65,7 @@ public class TestBase {
         }
 
         ModeEnum mode = ModeEnum.valueOf(testModeProperty.toUpperCase());
-        logger.info("Test mode identified: {}D", mode);
+        logger.info("Test mode identified: {}", mode);
         return mode;
     }
 
