@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <selenium.version>3.141.59</selenium.version>
         <java.version>1.8</java.version>
         <jupiter.version>5.7.1</jupiter.version>
@@ -49,12 +51,6 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
         </dependency>
 
         <!-- Logger -->
